@@ -4,7 +4,7 @@
 <button class="wb-btn-reset btn-@Action.ToString().ToLower() @(IsActive ? "active" : "")"
         @onclick="OnInternalClick"
         @onclick:stopPropagation="true"
-        title="@Tooltip"
+        title="@TooltipText"
         disabled="@Disabled"
         type="button">
 
@@ -23,16 +23,41 @@
         case ToolbarAction.DeleteMode:
             <IconDeleteMode IsActive="@IsActive" />
             break;
+        case ToolbarAction.MoveMode:
+            <IconMoveMode IsActive="@IsActive" />
+            break;
+        case ToolbarAction.MoveUp:
+            <IconMoveUp />
+            break;
+        case ToolbarAction.MoveDown:
+            <IconMoveDown />
+            break;
     }
 </button>
 
 @code {
-    public enum ToolbarAction { Create, Add, Delete, DeleteMode, DeleteChild }
+    public enum ToolbarAction { Create, Add, Delete, DeleteMode, DeleteChild, MoveMode, MoveUp, MoveDown }
     [Parameter] public ToolbarAction Action { get; set; }
     [Parameter] public bool IsActive { get; set; }
     [Parameter] public bool Disabled { get; set; }
     [Parameter] public string Tooltip { get; set; } = "";
     [Parameter] public EventCallback OnActionTriggered { get; set; }
+
+    // A button that cannot be pressed has nothing to explain.
+    private string? TooltipText
+    {
+        get
+        {
+            string? result = Tooltip;
+
+            if (Disabled)
+            {
+                result = null;
+            }
+
+            return result;
+        }
+    }
 
     private async Task OnInternalClick()
     {
