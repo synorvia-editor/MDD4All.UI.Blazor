@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\MDD4All.UI.Blazor.props" />
-</Project>
