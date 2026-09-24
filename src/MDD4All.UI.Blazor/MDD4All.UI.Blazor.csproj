@@ -1,21 +1,56 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-    <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <SupportedPlatform Include="browser" />
-    </ItemGroup>
+  <!-- What the listing on a package feed shows. The version is only a fallback: the
+       build hands in the real one, read from src/version.txt plus the run number. -->
+  <PropertyGroup>
+    <Version>2.0.0.0</Version>
+    <Authors>mDuckLab</Authors>
+    <Company>MDD4All.de</Company>
+    <Copyright>(c) 2026 mDuckLab</Copyright>
+    <Description>A breadcrumb trail and a set of toolbar buttons with their icons, for Blazor. Small building blocks meant to look the same wherever they are used, not a component framework.</Description>
+    <PackageTags>Blazor UI Components Breadcrumb Toolbar</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>Nuget.md</PackageReadmeFile>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    </ItemGroup>
+  <!-- Where the package came from, and what a debugger needs to step into this code from
+       a project that only has the package. The repository address is not written out: it is
+       read from the git remote while packing, so moving the repository changes nothing here. -->
+  <PropertyGroup>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <ProjectReference Include="..\..\..\MDD4All.UI.DataModels\src\MDD4All.UI.DataModels\MDD4All.UI.DataModels-dev.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+  </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Nuget.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <!-- A package project references packages, never projects. The -dev project beside this
+       one is the other way round; that is what the pair is for. -->
+  <ItemGroup>
+    <PackageReference Include="MDD4All.UI.DataModels" Version="2.0.0.3" />
+  </ItemGroup>
 </Project>
