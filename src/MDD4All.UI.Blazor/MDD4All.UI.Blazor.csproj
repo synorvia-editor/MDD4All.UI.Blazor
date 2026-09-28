@@ -48,9 +48,8 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
-  <!-- A package project references packages, never projects. The -dev project beside this
-       one is the other way round; that is what the pair is for. -->
+  <!-- Waiting on a package: Synorvia.UI.DataModels is not published yet. -->
   <ItemGroup>
-    <PackageReference Include="MDD4All.UI.DataModels" Version="2.0.0.3" />
+    <ProjectReference Include="..\..\..\Synorvia.UI.DataModels\src\Synorvia.UI.DataModels\Synorvia.UI.DataModels-dev.csproj" />
   </ItemGroup>
 </Project>
