@@ -5,3 +5,6 @@ The toolbar button brings its own icons - create, add, delete, delete mode, move
 down - and one appearance, so the same action looks the same wherever it appears.
 
 Small building blocks. This is not a component framework and does not try to be one.
+
+Since 2.1 the breadcrumb takes its tree nodes from Synorvia.UI.DataModels instead of
+MDD4All.UI.DataModels.
